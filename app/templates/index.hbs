@@ -1,0 +1,64 @@
+<br>
+<center style="font-size:36px;">To Do List</center>
+<br>
+<div class="container">
+  <form>
+    <br>
+    <div class="form-group">
+       Task description: {{input value=description}}
+       Due: {{input value=deadline}}
+       <button {{action (route-action 'save' description deadline)}} type="submit"> Save</button>
+       <br>
+ </div>
+ <br>
+
+  </form>
+</div>
+<br>
+<div class="container">
+  <button style="color:red;" {{action 'showTask' 'all'}}>All</button>
+  <button style="color:red;" {{action 'showTask' 'true'}} >Completed</button>
+  <button style="color:red;" {{action 'showTask' 'false'}}>Incomplete</button>
+</div>
+<br>
+
+
+
+<div class="container">
+  <div class="list-group">
+   
+    {{#each model as |task|}}
+      <div class="row">
+        <div class="list-group-item col-md-8">
+           <table>
+          <tr>
+            <th>Check</th>
+            <th>To-Do No</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>isCompleted </th>
+          </tr>
+          <tr>
+           <td><center> {{one-way-checkbox checked=task.isCompleted update=(action (route-action 'toggleTask' task))}}</center></td>
+          <td><center><strong>{{task.id}}</strong></center></td>
+          <td>{{task.description}}</td>
+         <td> {{task.deadline}}</td> 
+         <td><center>{{task.isCompleted}}</center></td>
+        </tr>
+        </table>
+        </div>
+        <div class="col-md-4">
+            <button style="color:blue;"  {{action 'editTask' task}}> Edit</button>
+            <button style="color:blue;"  {{action 'delete' task}}> Remove</button>
+        </div>
+        <br>
+      </div>
+    {{/each}}
+   
+  </div>
+</div>
+<div class="container row">
+  <div class="col-md-6">
+    {{outlet}}
+  </div>
+  </div>

@@ -1,0 +1,10 @@
+<br><center style="font-size:28px;">Edit Task {{task.id}}</center>
+<br>
+  <form>
+    <div class="form-group">
+      Due: {{input value=deadline placeholder=task.deadline}}
+      Task description: {{input value=description placeholder=task.description}}
+      <button {{action 'saveEdit' task description deadline}} type="submit">Save
+      </button>
+    </div>
+  </form>
